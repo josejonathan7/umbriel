@@ -2,6 +2,8 @@
  * For a detailed explanation regarding each configuration property and type check, visit:
  * https://jestjs.io/docs/configuration
  */
+const { pathsToModuleNameMapper } = require("ts-jest/utils");
+const { compilerOptions } = require("./tsconfig.json");
 
 module.exports = {
   // All imported modules in your tests should be mocked automatically
@@ -23,7 +25,7 @@ module.exports = {
   collectCoverageFrom: ["src/services/**/*.ts"],
 
   // The directory where Jest should output its coverage files
-  coverageDirectory: "__tests__/coverage",
+  coverageDirectory: "coverage",
 
   coverageProvider: "v8",
 
@@ -33,12 +35,13 @@ module.exports = {
     "lcov",
   ],
 
-  testMatch: [
-    "<rootDir>/__tests__/**/*.spec.ts",
-  ],
+
 
   // A map from regular expressions to paths to transformers
   transform: {
     "^.+\\.ts": "ts-jest"
   },
+  preset: "@shelf/jest-mongodb",
+
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: "<rootDir>/src/"}),
 };

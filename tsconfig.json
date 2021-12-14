@@ -17,7 +17,8 @@
     "emitDecoratorMetadata": true,
     "noImplicitAny": true  ,
     "paths": {
-      "@services/*": ["./service"]
+      "@services/*": ["services/*"],
+      "@schemas/*": ["schemas/*"]
     }                      
   },
 
